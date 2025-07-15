@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import register from "../../services/authService";
 
-// register form component
+// register form component by the auth service api
+
 const RegisterForm = () => {
-  const { register } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

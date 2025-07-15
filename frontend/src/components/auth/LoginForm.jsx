@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import authService from "../../services/authService";
 
-//login form component
+//login form component by the auth service api
 const LoginForm = () => {
-  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    try {
+      const user = await authService.login({ email, password });
+      login(user);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (

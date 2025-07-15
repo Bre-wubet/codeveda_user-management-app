@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/common/Sidebar";
+import Sidebar from "../../components/common/Sidebar";
 import { Outlet } from "react-router-dom";
 
 // AdminDashboard component serves as the main layout for admin pages styled with a sidebar

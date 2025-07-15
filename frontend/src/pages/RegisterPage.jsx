@@ -3,7 +3,7 @@ import RegisterForm from "../components/auth/RegisterForm";
 import { useNavigate } from "react-router-dom";
 
 // RegisterPage component allows users to create a new account an links to login if already registered
-export const RegisterPage = () => {
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegisterSuccess = () => {
@@ -20,3 +20,5 @@ export const RegisterPage = () => {
     </div>
   );
 };
+
+export default RegisterPage;

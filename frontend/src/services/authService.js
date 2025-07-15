@@ -16,7 +16,14 @@ const register = async (userData) => {
     return response.data.Error ? response.data.Error : response.data.user;
 };
 
+//authLogout function
+const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+};
+
 export default {
     login,
-    register
+    register,
+    logout
 };
