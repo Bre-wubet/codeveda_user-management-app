@@ -10,15 +10,12 @@ import AdminDashboard from "../src/pages/admin/AdminDashboard";
 import UsersPage from "../src/pages/admin/AsminUserPage";
 import ProductsPage from "../src/pages/admin/AdminProductPage";
 
-
 // User pages
 import UserDashboard from "../src/pages/user/UserDashboard";
 import UserProducts from "../src/pages/user/MyProducts";
 import ProfilePage from "../src/pages/user/ProfilePage";
 // import HomePage from "../src/pages/HomePage";
 // import AboutPage from "../src/pages/AboutPage";
-// import ContactPage from "../src/pages/ContactPage";
-// import NotFoundPage from "../src/pages/NotFoundPage";
 
 // define the main App component with routes for the application
 const App = () => {
