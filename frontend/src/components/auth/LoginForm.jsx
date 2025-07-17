@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import authService from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 //login form component by the auth service api
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const user = await authService.login({ email, password });
       login(user);
+      if (user && user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/user/dashboard");
+      }
     } catch (error) {
       console.error("Login failed:", error);
     }

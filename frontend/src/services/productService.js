@@ -3,7 +3,7 @@ import api from "./api"
 // admin can get list of products, delete products
 const getAllProducts = async () => {
     const response = await api.get('/products');
-    return response.data.Error ? response.data.Error : response.data.products;
+    return response.data.Error ? response.data.Error : response.data;
 };
 
 const deleteProduct = async (productId) => {
@@ -13,8 +13,8 @@ const deleteProduct = async (productId) => {
 
 // user access
 const getMyProducts = async () => {
-    const response = await api.get('/products/user/${userId}');
-    return response.data.Error ? response.data.Error : response.data.products;
+    const response = await api.get('/products/my');
+    return response.data.Error ? response.data.Error : response.data;
 };
 
 const createProduct = async (productData) => {

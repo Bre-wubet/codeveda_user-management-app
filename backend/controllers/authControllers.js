@@ -8,7 +8,10 @@ export const register = async (req, res) => {
     if (userExists) return res.status(400).json({ message: 'Email exists'})
 
     const user = await User.create({ name, email, password })
-    res.status(201).json({ token: generateToken(user._id)})    
+    // Exclude password from user object
+    const userObj = user.toObject();
+    delete userObj.password;
+    res.status(201).json({ token: generateToken(user._id), user: userObj })    
 }
 
 export const login = async (req,res) => {
@@ -17,5 +20,8 @@ export const login = async (req,res) => {
     if (!user || !(await bcrypt.compare(password, user.password)))
         return res.status(401).json({message: 'Invalid credentials'})
 
-    res.status(200).json({ token: generateToken(user._id)})
+    // Exclude password from user object
+    const userObj = user.toObject();
+    delete userObj.password;
+    res.status(200).json({ token: generateToken(user._id), user: userObj })
 }

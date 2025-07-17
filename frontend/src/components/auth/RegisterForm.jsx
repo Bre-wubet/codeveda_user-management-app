@@ -1,27 +1,40 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import register from "../../services/authService";
-
+import authService from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 // register form component by the auth service api
 
 const RegisterForm = () => {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    register(username, email, password);
+    setError("");
+    if (!name || !email || !password) {
+      setError("All fields are required");
+      return;
+    }
+    try {
+      const user = await authService.register({ name, email, password });
+      if (user && user.token) {
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/user/dashboard");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block mb-1">Username</label>
+        <label className="block mb-1">Name</label>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="border p-2 w-full"
           required
         />

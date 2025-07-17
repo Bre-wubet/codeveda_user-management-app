@@ -3,13 +3,13 @@ import { createuser } from "../../services/userService";
 
 // UserForm component for creating or updating user details using the userService
 const UserForm = ({ user, onSave }) => {
-  const [username, setUsername] = useState(user ? user.username : "");
+  const [name, setName] = useState(user ? user.name : "");
   const [email, setEmail] = useState(user ? user.email : "");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { username, email, password };
+    const userData = { name, email, password };
     await createuser(userData);
     onSave();
   };
@@ -17,11 +17,11 @@ const UserForm = ({ user, onSave }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block mb-1">Username</label>
+        <label className="block mb-1">Name</label>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="border p-2 w-full"
           required
         />

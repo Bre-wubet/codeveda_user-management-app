@@ -3,13 +3,12 @@ import Product from '../models/Products.js'
 // get all products
 export const getProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate('createdBy', 'name')
+        const products = await Product.find().populate('createdBy', 'name email role')
         res.json(products)
     } catch (error) {
         res.status(500).json({ message: 'Server error' })
     }
 }
-
 // get product by id
 export const getProduct = async (req, res) => {
     try {
@@ -20,9 +19,10 @@ export const getProduct = async (req, res) => {
         res.status(500).json({ message: 'Server error' })
     }
 }
-// create poduct
+// create product
 export const createProduct = async (req, res) => {
     try {
+        // Only allow the authenticated user to create their own product
         const product = await Product.create({ ...req.body, createdBy: req.user._id })
         res.status(201).json(product)
     } catch (error) {

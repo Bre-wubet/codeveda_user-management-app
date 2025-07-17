@@ -1,7 +1,7 @@
 
 import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import protectedRoute from "./components/common/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 import RegisterPage from "../src/pages/RegisterPage";
 import LoginPage from "../src/pages/LoginPage";
 
@@ -12,6 +12,7 @@ import ProductsPage from "../src/pages/admin/AdminProductPage";
 
 // User pages
 import UserDashboard from "../src/pages/user/UserDashboard";
+import ProductUserCreate from "../src/pages/user/ProductCreate";
 import UserProducts from "../src/pages/user/MyProducts";
 import ProfilePage from "../src/pages/user/ProfilePage";
 // import HomePage from "../src/pages/HomePage";
@@ -27,14 +28,43 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
 
     {/* // admin routes */}
-    <Route path="/admin/dashboard" element={protectedRoute(<AdminDashboard />)} />
-    <Route path="/admin/users" element={protectedRoute(<UsersPage />)} />
-    <Route path="/admin/products" element={protectedRoute(<ProductsPage />)} />
+    <Route path="/admin/dashboard" element={
+      <ProtectedRoute>
+        <AdminDashboard />
+      </ProtectedRoute>
+    } />
+    <Route path="/admin/users" element={
+      <ProtectedRoute>
+        <UsersPage />
+      </ProtectedRoute>
+    } />
+    <Route path="/admin/products" element={
+      <ProtectedRoute>
+        <ProductsPage />
+      </ProtectedRoute>
+    } />
 
     {/* // user routes */}
-    <Route path="/user/dashboard" element={protectedRoute(<UserDashboard />)} />
-    <Route path="/user/products" element={protectedRoute(<UserProducts />)} />
-    <Route path="/user/profile" element={protectedRoute(<ProfilePage />)} />
+    <Route path="/user/dashboard" element={
+      <ProtectedRoute>
+        <UserDashboard />
+      </ProtectedRoute>
+    } />
+    <Route path="/user/products/create" element={
+      <ProtectedRoute>
+        <ProductUserCreate />
+      </ProtectedRoute>
+    } />
+    <Route path="/user/products" element={
+      <ProtectedRoute>
+        <UserProducts />
+      </ProtectedRoute>
+    } />
+    <Route path="/user/profile" element={
+      <ProtectedRoute>
+        <ProfilePage />
+      </ProtectedRoute>
+    } />
 
     {/* // public routes */}
       {/* <Route path="/" element={<HomePage />} />

@@ -17,7 +17,7 @@ const ProductList = () => {
 
   const handleDelete = async (productId) => {
     await deleteProduct(productId);
-    setProducts(products.filter((product) => product.id !== productId));
+    setProducts(products.filter((product) => product._id !== productId));
   };
 
   if (loading) return <div>Loading...</div>;
@@ -28,13 +28,13 @@ const ProductList = () => {
       <h2 className="text-xl font-bold mb-4">Products List</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.map((product) => (
-          <div key={product.id} className="border p-4 rounded">
+          <div key={product._id} className="border p-4 rounded">
             <h3 className="font-bold">{product.name}</h3>
             <p>Price: ${product.price}</p>
             <img src={product.image} alt={product.name} className="w-full h-32 object-cover mb-2" />
             <div className="flex space-x-2">
               <button
-                onClick={() => handleDelete(product.id)}
+                onClick={() => handleDelete(product._id)}
                 className="bg-red-600 text-white px-2 py-1 rounded"
               >
                 Delete

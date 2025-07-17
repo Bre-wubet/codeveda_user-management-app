@@ -4,7 +4,7 @@ import api from "./api";
 //admin can create, update, delete users
 const getAllUsers = async () => {
     const response = await api.get('/users');
-    return response.data.Error ? response.data.Error : response.data.users;
+    return response.data.Error ? response.data.Error : response.data;
 }
 
 const createUser = async (userData) => {
