@@ -1,16 +1,14 @@
 import React from "react";
-import Sidebar from "../../components/common/Sidebar";
 import MyProducts from "../../components/user/MyProducts";
 
-// MyProducts component displays a list of products owned by the user with a sidebar for navigation
 const UserMyProducts = () => {
   return (
-    <div className="flex">
-      <Sidebar />
-      <main>
-        <h1 className="text-2xl font-bold mb-4">My Products</h1>
-        <MyProducts />
-      </main>
+    <div className="w-full max-w-3xl bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-10">
+      <h1 className="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600 mb-2">
+        My Products
+      </h1>
+      <div className="w-full h-px bg-gradient-to-r from-indigo-200 via-purple-200 to-blue-200 my-6" />
+      <MyProducts />
     </div>
   );
 };

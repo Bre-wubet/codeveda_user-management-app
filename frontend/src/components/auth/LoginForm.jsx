@@ -26,31 +26,38 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="block mb-1">Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 w-full"
-          required
-        />
-      </div>
-      <div>
-        <label className="block mb-1">Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full"
-          required
-        />
-      </div>
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2">
-        Login
-      </button>
-    </form>
+    <div className="h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 rounded-md p-3 w-full outline-none transition"
+            required
+            autoComplete="email"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 rounded-md p-3 w-full outline-none transition"
+            required
+            autoComplete="current-password"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-3 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 

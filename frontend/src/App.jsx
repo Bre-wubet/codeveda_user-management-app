@@ -7,7 +7,7 @@ import LoginPage from "../src/pages/LoginPage";
 
 // Admin pages
 import AdminDashboard from "../src/pages/admin/AdminDashboard";
-import UsersPage from "../src/pages/admin/AsminUserPage";
+import UsersPage from "./pages/admin/AdminUserPage";
 import ProductsPage from "../src/pages/admin/AdminProductPage";
 
 // User pages
@@ -15,65 +15,78 @@ import UserDashboard from "../src/pages/user/UserDashboard";
 import ProductUserCreate from "../src/pages/user/ProductCreate";
 import UserProducts from "../src/pages/user/MyProducts";
 import ProfilePage from "../src/pages/user/ProfilePage";
-// import HomePage from "../src/pages/HomePage";
-// import AboutPage from "../src/pages/AboutPage";
 
-// define the main App component with routes for the application
+import DashboardLayout from "./layouts/DashboardLayout";
+import AuthLayout from "./layouts/AuthLayout";
+
 const App = () => {
   return (
     <Routes>
-    {/* // auth routes */}
+      {/* Auth routes */}
       <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={
+        <AuthLayout>
+          <RegisterPage />
+        </AuthLayout>
+      } />
+      <Route path="/login" element={
+        <AuthLayout>
+          <LoginPage />
+        </AuthLayout>
+      } />
 
-    {/* // admin routes */}
-    <Route path="/admin/dashboard" element={
-      <ProtectedRoute>
-        <AdminDashboard />
-      </ProtectedRoute>
-    } />
-    <Route path="/admin/users" element={
-      <ProtectedRoute>
-        <UsersPage />
-      </ProtectedRoute>
-    } />
-    <Route path="/admin/products" element={
-      <ProtectedRoute>
-        <ProductsPage />
-      </ProtectedRoute>
-    } />
+      {/* Admin routes */}
+      <Route path="/admin/dashboard" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <AdminDashboard />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/users" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <UsersPage />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/products" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <ProductsPage />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
 
-    {/* // user routes */}
-    <Route path="/user/dashboard" element={
-      <ProtectedRoute>
-        <UserDashboard />
-      </ProtectedRoute>
-    } />
-    <Route path="/user/products/create" element={
-      <ProtectedRoute>
-        <ProductUserCreate />
-      </ProtectedRoute>
-    } />
-    <Route path="/user/products" element={
-      <ProtectedRoute>
-        <UserProducts />
-      </ProtectedRoute>
-    } />
-    <Route path="/user/profile" element={
-      <ProtectedRoute>
-        <ProfilePage />
-      </ProtectedRoute>
-    } />
-
-    {/* // public routes */}
-      {/* <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      
-      {/* // catch-all route for 404 */}
-      {/* <Route path="*" element={<NotFoundPage />} /> */}
-
+      {/* User routes */}
+      <Route path="/user/dashboard" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <UserDashboard />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/user/products/create" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <ProductUserCreate />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/user/products" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <UserProducts />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/user/profile" element={
+        <ProtectedRoute>
+          <DashboardLayout>
+            <ProfilePage />
+          </DashboardLayout>
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };

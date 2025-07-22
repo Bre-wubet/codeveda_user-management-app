@@ -1,16 +1,13 @@
-import Sidebar from "../../components/common/Sidebar";
 import ProductCreate from "../../components/user/ProductCreate";
 
-
-// ProductCreate component allows users to create new products with a sidebar for navigation
 const UserProductCreate = () => {
   return (
-    <div className="flex">
-      <Sidebar />
-      <main>
-        <h1 className="text-2xl font-bold mb-4">Create Product</h1>
-        <ProductCreate />
-      </main>
+    <div className="w-full max-w-3xl bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-10">
+      <h1 className="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600 mb-2">
+        Create Product
+      </h1>
+      <div className="w-full h-px bg-gradient-to-r from-indigo-200 via-purple-200 to-blue-200 my-6" />
+      <ProductCreate />
     </div>
   );
 };
