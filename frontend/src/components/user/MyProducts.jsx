@@ -20,6 +20,10 @@ const MyProducts = () => {
     setProducts(products.filter((product) => product.id !== productId));
   };
 
+  const handleDetails = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -35,7 +39,9 @@ const MyProducts = () => {
               >
                 Delete
               </button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
+              <button 
+              onClick={() => handleDetails(product.id)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-200 transition">
                 Details
               </button>
             </div>

@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import RegisterPage from "../src/pages/RegisterPage";
 import LoginPage from "../src/pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 // Admin pages
 import AdminDashboard from "../src/pages/admin/AdminDashboard";
@@ -22,8 +23,9 @@ import AuthLayout from "./layouts/AuthLayout";
 const App = () => {
   return (
     <Routes>
+      {/* Public home route */}
+      <Route path="/" element={<HomePage />} />
       {/* Auth routes */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/register" element={
         <AuthLayout>
           <RegisterPage />

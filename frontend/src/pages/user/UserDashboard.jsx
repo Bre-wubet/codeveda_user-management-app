@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { UserCircleIcon, CollectionIcon, PlusCircleIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 const UserDashboard = () => {
   const { user } = useAuth();
@@ -21,27 +22,27 @@ const UserDashboard = () => {
       </div>
       <div className="w-full h-px bg-gradient-to-r from-indigo-200 via-purple-200 to-blue-200 my-6" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-        <a
-          href="/user/products"
+        <Link
+          to="/user/products"
           className="flex flex-col items-center justify-center bg-gradient-to-br from-indigo-100 to-blue-100 rounded-xl p-6 shadow hover:shadow-lg transition group"
         >
           <CollectionIcon className="h-10 w-10 text-indigo-500 group-hover:text-indigo-700 mb-2" />
           <span className="font-semibold text-gray-700">My Products</span>
-        </a>
-        <a
-          href="/user/profile"
+        </Link>
+        <Link
+          to="/user/profile"
           className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl p-6 shadow hover:shadow-lg transition group"
         >
           <UserCircleIcon className="h-10 w-10 text-blue-500 group-hover:text-blue-700 mb-2" />
           <span className="font-semibold text-gray-700">Profile</span>
-        </a>
-        <a
-          href="/user/products/create"
+        </Link>
+        <Link
+          to="/user/products/create"
           className="flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 to-indigo-100 rounded-xl p-6 shadow hover:shadow-lg transition group"
         >
           <PlusCircleIcon className="h-10 w-10 text-purple-500 group-hover:text-purple-700 mb-2" />
           <span className="font-semibold text-gray-700">Create Product</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

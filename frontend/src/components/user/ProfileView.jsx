@@ -11,8 +11,8 @@ const ProfileView = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedUser = { ...user, username, email, profileImage };
-    await updateUserProfile(updatedUser);
+    const updatedUser = { username, email, profileImage };
+    await updateUserProfile(user._id, updatedUser);
   };
 
   return (

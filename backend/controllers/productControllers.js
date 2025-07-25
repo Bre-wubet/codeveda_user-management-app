@@ -9,6 +9,16 @@ export const getProducts = async (req, res) => {
         res.status(500).json({ message: 'Server error' })
     }
 }
+
+// get products created by the authenticated user
+export const getMyProducts = async (req, res) => {
+    try {
+        const products = await Product.find({ createdBy: req.user._id });
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+}
 // get product by id
 export const getProduct = async (req, res) => {
     try {

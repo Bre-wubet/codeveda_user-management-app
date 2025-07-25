@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllUsers, deleteUser } from "../../services/userService";
+import { getAllUsers, deleteUser, updateUser } from "../../services/userService";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -8,7 +8,8 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const users = await getAllUsers();
-      setUsers(users);
+      // Map _id to id for consistency
+      setUsers(users.map(user => ({ ...user, id: user._id })));
       setLoading(false);
     };
     fetchUsers();
@@ -17,6 +18,11 @@ const UserList = () => {
   const handleDelete = async (userId) => {
     await deleteUser(userId);
     setUsers(users.filter((user) => user.id !== userId));
+  };
+
+  const handleEdit = async (userId) => {
+    await updateUser(userId, { isAdmin: true });
+    setUsers(users.map((user) => user.id === userId ? { ...user, isAdmin: true } : user));
   };
 
   if (loading) return (
@@ -54,6 +60,7 @@ const UserList = () => {
                           Delete
                         </button>
                         <button
+                          onClick={() => handleEdit(user.id)}
                           className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                         >
                           Edit
